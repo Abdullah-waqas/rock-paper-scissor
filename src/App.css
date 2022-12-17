@@ -44,6 +44,9 @@
   --control: #e69119;
   --color: #fff;
 }
+header {
+  text-align: center;
+}
 button {
   background: var(--control);
   color: var(--color);

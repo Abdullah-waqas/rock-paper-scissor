@@ -1,4 +1,4 @@
-import React, { FC } from "react";
+import React, { FC, useEffect, useState } from "react";
 import { WELCOME_SCREEN } from "../../constants";
 import { GAME_STATE, GetMatchResultType } from "../../types";
 import { getMatch, getRandomOption } from "../../utils";
@@ -8,24 +8,38 @@ type ComputerVsComputerType = {
 };
 
 const ComputerVsComputer: FC<ComputerVsComputerType> = ({ setMode }) => {
-  const computer1Option = getRandomOption();
-  const Computer2Option = getRandomOption();
-  const result: GetMatchResultType = getMatch(
-    computer1Option,
-    Computer2Option,
-    "Computer 1",
-    "Computer 2"
-  );
+  const [result, setResult] = useState<GetMatchResultType>();
+
+  useEffect(() => {
+    getPlayerResults();
+  }, []);
+
+  const getPlayerResults = () => {
+    const randomOptions = getRandomOption();
+    const result: GetMatchResultType = getMatch(
+      randomOptions.value1,
+      randomOptions.value2,
+      "Computer 1",
+      "Computer 2"
+    );
+    setResult(result);
+  };
   return (
     <div className="App">
       <header className="App-header">
         <h1>Paper Scissor Stone Game</h1>
-        <h1>Computer Vs Computer</h1>
+        <h1 data-testid="test-header_text">Computer Vs Computer</h1>
       </header>
-      <h2>Computer 1 chooses {result.playerASelection}</h2>
-      <h2>Computer 2 chooses {result.playerBSelection}</h2>
-      <h2>{result.status}</h2>
-      <button onClick={() => setMode(WELCOME_SCREEN)}>Play Again</button>
+      {result && (
+        <>
+          <h2>Computer 1 chooses {result.playerASelection}</h2>
+          <h2>Computer 2 chooses {result.playerBSelection}</h2>
+          <h2 data-testid="game-result">{result.status}</h2>
+        </>
+      )}
+      <button data-testid="test-play_again" onClick={() => setMode(WELCOME_SCREEN)}>
+        Play Again
+      </button>
     </div>
   );
 };

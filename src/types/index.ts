@@ -13,6 +13,11 @@ export type PLAYER_SELECTION_TYPE = ROCK | PAPER | SCISSOR;
 
 export interface GetMatchResultType {
   status: string;
-  playerASelection: PLAYER_SELECTION_TYPE
-  playerBSelection: PLAYER_SELECTION_TYPE
+  playerASelection: PLAYER_SELECTION_TYPE;
+  playerBSelection: PLAYER_SELECTION_TYPE;
+}
+
+export interface GetRandomOptionType {
+  value1: PLAYER_SELECTION_TYPE;
+  value2: PLAYER_SELECTION_TYPE;
 }

@@ -15,8 +15,8 @@ const PlayerVsComputer: FC<PlayerVsComputerType> = ({ setMode }) => {
   const [result, setResult] = useState<GetMatchResultType>();
 
   const play = (option: PLAYER_SELECTION_TYPE) => {
-    const Computer2Option = getRandomOption();
-    const result = getMatch(option, Computer2Option, "Human", "Computer 2");
+    const randomOptions = getRandomOption();
+    const result = getMatch(option, randomOptions.value1, "Human", "Computer");
     setResult(result);
   };
 
@@ -24,14 +24,14 @@ const PlayerVsComputer: FC<PlayerVsComputerType> = ({ setMode }) => {
     <div className="App">
       <header className="App-header">
         <h1>Paper Scissor Stone Game</h1>
-        <h1>Player Vs Computer</h1>
+        <h1 data-testid="test-header_text">Player Vs Computer</h1>
       </header>
       {!result && (
         <>
           <h2>Choose Option from here</h2>
-          <button onClick={() => play(PAPER)}>Paper</button>
-          <button onClick={() => play(SCISSOR)}>Scissor</button>
-          <button onClick={() => play(ROCK)}>Rock</button>
+          <button data-testid="test-paper_btn" onClick={() => play(PAPER)}>Paper</button>
+          <button data-testid="test-scissor_btn" onClick={() => play(SCISSOR)}>Scissor</button>
+          <button data-testid="test-rock_btn" onClick={() => play(ROCK)}>Rock</button>
         </>
       )}
 
@@ -39,10 +39,10 @@ const PlayerVsComputer: FC<PlayerVsComputerType> = ({ setMode }) => {
         <>
           <h2>Human chooses {result.playerASelection}</h2>
           <h2>Computer 2 chooses {result.playerBSelection}</h2>
-          <h2>Result: {result.status}</h2>
+          <h2 data-testid="game-result">Result: {result.status}</h2>
         </>
       )}
-      <button onClick={() => setMode(WELCOME_SCREEN)}>Play Again</button>
+      <button data-testid="test-play_again" onClick={() => setMode(WELCOME_SCREEN)}>Play Again</button>
     </div>
   );
 };
