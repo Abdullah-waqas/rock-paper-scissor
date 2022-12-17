@@ -1,4 +1,4 @@
-import React, { useMemo, useState } from "react";
+import React from "react";
 import "./App.css";
 
 import ComputerVsComputer from "./Screens/ComputerVsComputer/ComputerVsComputer";
@@ -12,7 +12,7 @@ import { GAME_STATE } from "./types";
 import WelcomScreen from "./Screens/WelcomeScreen/WelcomScreen";
 
 function App() {
-  const [mode, setMode] = useState<GAME_STATE>(WELCOME_SCREEN);
+  const [mode, setMode] = React.useState<GAME_STATE>(WELCOME_SCREEN);
 
   const SCREENS = {
     [WELCOME_SCREEN]: <WelcomScreen setMode={setMode} />,

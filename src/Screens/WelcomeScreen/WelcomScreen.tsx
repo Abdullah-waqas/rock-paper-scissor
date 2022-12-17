@@ -8,7 +8,7 @@ type WelcomScreenType = {
 
 const WelcomScreen: FC<WelcomScreenType> = ({ setMode }) => {
   return (
-    <div className="App" data-id="welcome_screen">
+    <div className="App" data-testid="welcome_screen">
       <header className="App-header">
         <h1>Paper Scissor Stone Game</h1>
         <h1>Choose Option here</h1>
