@@ -1,8 +1,15 @@
 import { OPTIONS_LIST, PAPER, ROCK, SCISSOR } from "./constants";
-import { GetMatchResultType, PLAYER_SELECTION_TYPE } from "./types";
+import {
+  GetMatchResultType,
+  GetRandomOptionType,
+  PLAYER_SELECTION_TYPE,
+} from "./types";
 
-export function getRandomOption() {
-  return OPTIONS_LIST[Math.floor(Math.random() * OPTIONS_LIST.length)];
+export function getRandomOption(): GetRandomOptionType {
+  return {
+    value1: OPTIONS_LIST[Math.floor(Math.random() * OPTIONS_LIST.length)],
+    value2: OPTIONS_LIST[Math.floor(Math.random() * OPTIONS_LIST.length)],
+  };
 }
 
 function generateStatus(
