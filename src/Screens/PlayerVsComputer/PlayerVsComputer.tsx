@@ -21,29 +21,40 @@ const PlayerVsComputer: FC<PlayerVsComputerType> = ({ setMode }) => {
   };
 
   return (
-    <div className="App">
-      <header className="App-header">
-        <h1>Paper Scissor Stone Game</h1>
-        <h1 data-testid="test-header_text">Player Vs Computer</h1>
-      </header>
-      {!result && (
-        <>
-          <h2>Choose Option from here</h2>
-          <button data-testid="test-paper_btn" onClick={() => play(PAPER)}>Paper</button>
-          <button data-testid="test-scissor_btn" onClick={() => play(SCISSOR)}>Scissor</button>
-          <button data-testid="test-rock_btn" onClick={() => play(ROCK)}>Rock</button>
-        </>
-      )}
-
-      {result && (
-        <>
-          <h2>Human chooses {result.playerASelection}</h2>
-          <h2>Computer 2 chooses {result.playerBSelection}</h2>
-          <h2 data-testid="game-result">Result: {result.status}</h2>
-        </>
-      )}
-      <button data-testid="test-play_again" onClick={() => setMode(WELCOME_SCREEN)}>Play Again</button>
-    </div>
+    <>
+      <h2>Choose Option from here</h2>
+      <div className="button-box">
+        {!result && (
+          <>
+            <button data-testid="test-paper_btn" onClick={() => play(PAPER)}>
+              Paper
+            </button>
+            <button
+              data-testid="test-scissor_btn"
+              onClick={() => play(SCISSOR)}
+            >
+              Scissor
+            </button>
+            <button data-testid="test-rock_btn" onClick={() => play(ROCK)}>
+              Rock
+            </button>
+          </>
+        )}
+        {result && (
+          <>
+            <h2>Human chooses {result.playerASelection}</h2>
+            <h2>Computer 2 chooses {result.playerBSelection}</h2>
+            <h2 data-testid="game-result">Result: {result.status}</h2>
+          </>
+        )}
+        <button
+          data-testid="test-play_again"
+          onClick={() => setMode(WELCOME_SCREEN)}
+        >
+          Play Again
+        </button>
+      </div>
+    </>
   );
 };
 

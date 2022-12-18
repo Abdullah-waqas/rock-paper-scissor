@@ -27,11 +27,7 @@ const ComputerVsComputer: FC<ComputerVsComputerType> = ({ setMode }) => {
     setResult(result);
   };
   return (
-    <div className="App">
-      <header className="App-header">
-        <h1>Paper Scissor Stone Game</h1>
-        <h1 data-testid="test-header_text">Computer Vs Computer</h1>
-      </header>
+    <>
       {result && (
         <>
           <h2>Computer 1 chooses {result.playerASelection}</h2>
@@ -39,10 +35,15 @@ const ComputerVsComputer: FC<ComputerVsComputerType> = ({ setMode }) => {
           <h2 data-testid="game-result">{result.status}</h2>
         </>
       )}
-      <button data-testid="test-play_again" onClick={() => setMode(WELCOME_SCREEN)}>
-        Play Again
-      </button>
-    </div>
+      <div className="button-box">
+        <button
+          data-testid="test-play_again"
+          onClick={() => setMode(WELCOME_SCREEN)}
+        >
+          Play Again
+        </button>
+      </div>
+    </>
   );
 };
 

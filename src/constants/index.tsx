@@ -9,3 +9,11 @@ export const SCISSOR: PLAYER_SELECTION_TYPE = "SCISSOR";
 export const ROCK: PLAYER_SELECTION_TYPE = "ROCK";
 
 export const OPTIONS_LIST: PLAYER_SELECTION_TYPE[] = [PAPER, SCISSOR, ROCK];
+
+export const HEADER_TEXT: {
+  [key in GAME_STATE]: string;
+} = {
+  PLAYER_VS_COMPUTER: "Player Vs Computer",
+  COMPUTER_VS_COMPUTER: "Computer Vs Computer",
+  WELCOME_SCREEN: "How do you want to play?",
+};

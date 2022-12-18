@@ -20,7 +20,15 @@ function App() {
     [COMPUTER_VS_COMPUTER]: <ComputerVsComputer setMode={setMode} />,
   };
 
-  return SCREENS[mode];
+  return (
+    <>
+      <header className="App-header">
+        <h1>Paper Scissor Stone Game</h1>
+        <h2 data-testid="test-header_text">Player Vs Computer</h2>
+      </header>
+      {SCREENS[mode]}
+    </>
+  );
 }
 
 export default App;
