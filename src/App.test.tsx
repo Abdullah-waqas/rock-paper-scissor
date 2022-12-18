@@ -14,18 +14,18 @@ describe("Should render <App />", () => {
     expect(headerElement.textContent).toBe(HEADER_TEXT.WELCOME_SCREEN);
   });
 
-  it("should render Player vs Computer screen", async() => {
+  it("should render Player vs Computer screen",() => {
     React.useState = jest.fn().mockReturnValue([PLAYER_VS_COMPUTER, {}]);
     render(<App />);
-    const headerElement = await screen.findByTestId("test-header_text");
+    const headerElement =  screen.getByTestId("test-header_text");
     expect(headerElement).toBeInTheDocument();
     expect(headerElement.textContent).toBe(HEADER_TEXT.PLAYER_VS_COMPUTER);
   });
 
-  it("should render Computer vs Computer screen", async() => {
+  it("should render Computer vs Computer screen",() => {
     React.useState = jest.fn().mockReturnValue([COMPUTER_VS_COMPUTER, {}]);
     render(<App />);
-    const headerElement = await screen.findByTestId("test-header_text");
+    const headerElement = screen.getByTestId("test-header_text");
     expect(headerElement).toBeInTheDocument();
     expect(headerElement.textContent).toBe(HEADER_TEXT.COMPUTER_VS_COMPUTER);
   });

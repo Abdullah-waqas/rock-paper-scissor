@@ -7,7 +7,7 @@ import PlayerVsComputer from "./PlayerVsComputer";
 describe("<ComputerVsComputer />", () => {
   afterEach(cleanup);
 
-  it("should call setmode func", async () => {
+  it("should call setmode func", () => {
     const setModeSpy = jest.fn();
 
     render(<PlayerVsComputer setMode={setModeSpy} />);
@@ -16,7 +16,7 @@ describe("<ComputerVsComputer />", () => {
     expect(setModeSpy).toHaveBeenCalled();
   });
 
-  it("should call getRandomOption func", async () => {
+  it("should call getRandomOption func", () => {
     const setModeSpy = jest.fn();
     const getRandomOptionMock = jest
       .spyOn(method, "getRandomOption")
@@ -29,7 +29,7 @@ describe("<ComputerVsComputer />", () => {
     getRandomOptionMock.mockRestore();
   });
 
-  it("should tie the game", async () => {
+  it("should tie the game", () => {
     const setModeSpy = jest.fn();
     const getRandomOptionMock = jest
       .spyOn(method, "getRandomOption")
@@ -42,7 +42,7 @@ describe("<ComputerVsComputer />", () => {
     getRandomOptionMock.mockRestore();
   });
 
-  it("should win Human", async () => {
+  it("should win Human", () => {
     const setModeSpy = jest.fn();
     const getRandomOptionMock = jest
       .spyOn(method, "getRandomOption")
@@ -55,7 +55,7 @@ describe("<ComputerVsComputer />", () => {
     getRandomOptionMock.mockRestore();
   });
 
-  it("should win Computer", async () => {
+  it("should win Computer", () => {
     const setModeSpy = jest.fn();
     const getRandomOptionMock = jest
       .spyOn(method, "getRandomOption")

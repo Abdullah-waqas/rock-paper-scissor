@@ -6,7 +6,7 @@ import WelcomScreen from "./WelcomScreen";
 describe("<WelcomeScreen />", () => {
   afterEach(cleanup);
 
-  it("should call playerVsComp func", async () => {
+  it("should call playerVsComp func", () => {
     const setModeSpy = jest.fn();
 
     render(<WelcomScreen setMode={setModeSpy} />);
@@ -15,7 +15,7 @@ describe("<WelcomeScreen />", () => {
     expect(setModeSpy).toHaveBeenCalledWith(PLAYER_VS_COMPUTER);
   });
 
-  it("should call compVsComp func", async () => {
+  it("should call compVsComp func", () => {
     const setModeSpy = jest.fn();
 
     render(<WelcomScreen setMode={setModeSpy} />);

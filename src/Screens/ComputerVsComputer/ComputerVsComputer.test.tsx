@@ -7,7 +7,7 @@ import { PAPER, ROCK, SCISSOR } from "../../constants";
 describe("<ComputerVsComputer />", () => {
   afterEach(cleanup);
 
-  it("should call setmode func", async () => {
+  it("should call setmode func", () => {
     const setModeSpy = jest.fn();
 
     render(<ComputerVsComputer setMode={setModeSpy} />);
@@ -16,7 +16,7 @@ describe("<ComputerVsComputer />", () => {
     expect(setModeSpy).toHaveBeenCalled();
   });
 
-  it("should call getRandomOption func", async () => {
+  it("should call getRandomOption func", () => {
     jest.useFakeTimers();
     const setModeSpy = jest.fn();
     const getRandomOptionMock = jest
@@ -31,7 +31,7 @@ describe("<ComputerVsComputer />", () => {
     getRandomOptionMock.mockRestore();
   });
 
-  it("should tie the game", async () => {
+  it("should tie the game", () => {
     jest.useFakeTimers();
     const setModeSpy = jest.fn();
     const getRandomOptionMock = jest
@@ -47,7 +47,7 @@ describe("<ComputerVsComputer />", () => {
     getRandomOptionMock.mockRestore();
   });
 
-  it("should win computer 1", async () => {
+  it("should win computer 1", () => {
     jest.useFakeTimers();
     const setModeSpy = jest.fn();
     const getRandomOptionMock = jest
@@ -63,7 +63,7 @@ describe("<ComputerVsComputer />", () => {
     getRandomOptionMock.mockRestore();
   });
 
-  it("should win computer 2", async () => {
+  it("should win computer 2", () => {
     jest.useFakeTimers();
     const setModeSpy = jest.fn();
     const getRandomOptionMock = jest
