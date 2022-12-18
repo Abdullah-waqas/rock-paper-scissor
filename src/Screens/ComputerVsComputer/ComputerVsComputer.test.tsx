@@ -1,4 +1,4 @@
-import { cleanup, render, screen } from "@testing-library/react";
+import { act, cleanup, render, screen } from "@testing-library/react";
 import ComputerVsComputer from "./ComputerVsComputer";
 import userEvent from "@testing-library/user-event";
 import * as method from "../../utils";
@@ -25,41 +25,61 @@ describe("<ComputerVsComputer />", () => {
   });
 
   it("should call getRandomOption func", async () => {
+    jest.useFakeTimers();
     const setModeSpy = jest.fn();
     const getRandomOptionMethodSpy = jest
       .spyOn(method, "getRandomOption")
       .mockReturnValue({ value1: PAPER, value2: ROCK });
     render(<ComputerVsComputer setMode={setModeSpy} />);
-    expect(getRandomOptionMethodSpy).toHaveBeenCalled();
+    act(() => {
+      jest.runAllTimers();
+    });
+    expect(getRandomOptionMethodSpy).toHaveBeenCalled()
+    jest.useRealTimers();
   });
 
   it("should tie the game", async () => {
+    jest.useFakeTimers();
     const setModeSpy = jest.fn();
     jest
       .spyOn(method, "getRandomOption")
       .mockReturnValue({ value1: PAPER, value2: PAPER });
     render(<ComputerVsComputer setMode={setModeSpy} />);
+    act(() => {
+      jest.runAllTimers();
+    });
     const gameResult = screen.getByTestId("game-result");
     expect(gameResult.textContent).toEqual("Tie");
+    jest.useRealTimers();
   });
 
   it("should win computer 1", async () => {
+    jest.useFakeTimers();
     const setModeSpy = jest.fn();
     jest
       .spyOn(method, "getRandomOption")
       .mockReturnValue({ value1: PAPER, value2: ROCK });
     render(<ComputerVsComputer setMode={setModeSpy} />);
+    act(() => {
+      jest.runAllTimers();
+    });
     const gameResult = screen.getByTestId("game-result");
     expect(gameResult.textContent).toEqual("Computer 1 win");
+    jest.useRealTimers();
   });
 
   it("should win computer 2", async () => {
+    jest.useFakeTimers();
     const setModeSpy = jest.fn();
     jest
       .spyOn(method, "getRandomOption")
       .mockReturnValue({ value1: PAPER, value2: SCISSOR });
     render(<ComputerVsComputer setMode={setModeSpy} />);
+    act(() => {
+      jest.runAllTimers();
+    });
     const gameResult = screen.getByTestId("game-result");
     expect(gameResult.textContent).toEqual("Computer 2 win");
+    jest.useRealTimers();
   });
 });

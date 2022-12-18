@@ -11,7 +11,9 @@ const ComputerVsComputer: FC<ComputerVsComputerType> = ({ setMode }) => {
   const [result, setResult] = useState<GetMatchResultType>();
 
   useEffect(() => {
-    getPlayerResults();
+    setTimeout(() => {
+      getPlayerResults();
+    }, 2000);
   }, []);
 
   const getPlayerResults = () => {
