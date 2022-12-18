@@ -7,14 +7,6 @@ import PlayerVsComputer from "./PlayerVsComputer";
 describe("<ComputerVsComputer />", () => {
   afterEach(cleanup);
 
-  it("should render Player Vs Computer component", () => {
-    const setModeSpy = jest.fn();
-    render(<PlayerVsComputer setMode={setModeSpy} />);
-    const headerElement = screen.getByTestId("test-header_text");
-    expect(headerElement).toBeInTheDocument();
-    expect(headerElement.textContent).toBe("Player Vs Computer");
-  });
-
   it("should call setmode func", async () => {
     const setModeSpy = jest.fn();
 
@@ -26,19 +18,20 @@ describe("<ComputerVsComputer />", () => {
 
   it("should call getRandomOption func", async () => {
     const setModeSpy = jest.fn();
-    const getRandomOptionMethodSpy = jest
+    const getRandomOptionMock = jest
       .spyOn(method, "getRandomOption")
       .mockReturnValue({ value1: PAPER, value2: ROCK });
     render(<PlayerVsComputer setMode={setModeSpy} />);
-    expect(getRandomOptionMethodSpy).not.toHaveBeenCalled();
+    expect(getRandomOptionMock).not.toHaveBeenCalled();
     const paperBtn = screen.getByTestId("test-paper_btn");
     userEvent.click(paperBtn);
-    expect(getRandomOptionMethodSpy).toHaveBeenCalled();
+    expect(getRandomOptionMock).toHaveBeenCalled();
+    getRandomOptionMock.mockRestore();
   });
 
   it("should tie the game", async () => {
     const setModeSpy = jest.fn();
-    jest
+    const getRandomOptionMock = jest
       .spyOn(method, "getRandomOption")
       .mockReturnValue({ value1: PAPER, value2: PAPER });
     render(<PlayerVsComputer setMode={setModeSpy} />);
@@ -46,11 +39,12 @@ describe("<ComputerVsComputer />", () => {
     userEvent.click(paperBtn);
     const gameResult = screen.getByTestId("game-result");
     expect(gameResult.textContent).toEqual("Result: Tie");
+    getRandomOptionMock.mockRestore();
   });
 
   it("should win Human", async () => {
     const setModeSpy = jest.fn();
-    jest
+    const getRandomOptionMock = jest
       .spyOn(method, "getRandomOption")
       .mockReturnValue({ value1: ROCK, value2: PAPER });
     render(<PlayerVsComputer setMode={setModeSpy} />);
@@ -58,11 +52,12 @@ describe("<ComputerVsComputer />", () => {
     userEvent.click(paperBtn);
     const gameResult = screen.getByTestId("game-result");
     expect(gameResult.textContent).toEqual("Result: Human win");
+    getRandomOptionMock.mockRestore();
   });
 
   it("should win Computer", async () => {
     const setModeSpy = jest.fn();
-    jest
+    const getRandomOptionMock = jest
       .spyOn(method, "getRandomOption")
       .mockReturnValue({ value1: ROCK, value2: PAPER });
     render(<PlayerVsComputer setMode={setModeSpy} />);
@@ -70,5 +65,6 @@ describe("<ComputerVsComputer />", () => {
     userEvent.click(paperBtn);
     const gameResult = screen.getByTestId("game-result");
     expect(gameResult.textContent).toEqual("Result: Computer win");
+    getRandomOptionMock.mockRestore();
   });
 });

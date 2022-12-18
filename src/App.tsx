@@ -4,6 +4,7 @@ import "./App.css";
 import ComputerVsComputer from "./Screens/ComputerVsComputer/ComputerVsComputer";
 import {
   COMPUTER_VS_COMPUTER,
+  HEADER_TEXT,
   PLAYER_VS_COMPUTER,
   WELCOME_SCREEN,
 } from "./constants";
@@ -24,7 +25,7 @@ function App() {
     <>
       <header className="App-header">
         <h1>Paper Scissor Stone Game</h1>
-        <h2 data-testid="test-header_text">Player Vs Computer</h2>
+        <h2 data-testid="test-header_text">{HEADER_TEXT[mode]}</h2>
       </header>
       {SCREENS[mode]}
     </>

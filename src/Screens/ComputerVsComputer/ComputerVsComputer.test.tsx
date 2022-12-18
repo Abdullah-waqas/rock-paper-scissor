@@ -7,14 +7,6 @@ import { PAPER, ROCK, SCISSOR } from "../../constants";
 describe("<ComputerVsComputer />", () => {
   afterEach(cleanup);
 
-  it("should render Computer Vs Computer component", () => {
-    const setModeSpy = jest.fn();
-    render(<ComputerVsComputer setMode={setModeSpy} />);
-    const headerElement = screen.getByTestId("test-header_text");
-    expect(headerElement).toBeInTheDocument();
-    expect(headerElement.textContent).toBe("Computer Vs Computer");
-  });
-
   it("should call setmode func", async () => {
     const setModeSpy = jest.fn();
 
@@ -27,21 +19,22 @@ describe("<ComputerVsComputer />", () => {
   it("should call getRandomOption func", async () => {
     jest.useFakeTimers();
     const setModeSpy = jest.fn();
-    const getRandomOptionMethodSpy = jest
+    const getRandomOptionMock = jest
       .spyOn(method, "getRandomOption")
       .mockReturnValue({ value1: PAPER, value2: ROCK });
     render(<ComputerVsComputer setMode={setModeSpy} />);
     act(() => {
       jest.runAllTimers();
     });
-    expect(getRandomOptionMethodSpy).toHaveBeenCalled()
+    expect(getRandomOptionMock).toHaveBeenCalled();
     jest.useRealTimers();
+    getRandomOptionMock.mockRestore();
   });
 
   it("should tie the game", async () => {
     jest.useFakeTimers();
     const setModeSpy = jest.fn();
-    jest
+    const getRandomOptionMock = jest
       .spyOn(method, "getRandomOption")
       .mockReturnValue({ value1: PAPER, value2: PAPER });
     render(<ComputerVsComputer setMode={setModeSpy} />);
@@ -51,12 +44,13 @@ describe("<ComputerVsComputer />", () => {
     const gameResult = screen.getByTestId("game-result");
     expect(gameResult.textContent).toEqual("Tie");
     jest.useRealTimers();
+    getRandomOptionMock.mockRestore();
   });
 
   it("should win computer 1", async () => {
     jest.useFakeTimers();
     const setModeSpy = jest.fn();
-    jest
+    const getRandomOptionMock = jest
       .spyOn(method, "getRandomOption")
       .mockReturnValue({ value1: PAPER, value2: ROCK });
     render(<ComputerVsComputer setMode={setModeSpy} />);
@@ -66,12 +60,13 @@ describe("<ComputerVsComputer />", () => {
     const gameResult = screen.getByTestId("game-result");
     expect(gameResult.textContent).toEqual("Computer 1 win");
     jest.useRealTimers();
+    getRandomOptionMock.mockRestore();
   });
 
   it("should win computer 2", async () => {
     jest.useFakeTimers();
     const setModeSpy = jest.fn();
-    jest
+    const getRandomOptionMock = jest
       .spyOn(method, "getRandomOption")
       .mockReturnValue({ value1: PAPER, value2: SCISSOR });
     render(<ComputerVsComputer setMode={setModeSpy} />);
@@ -81,5 +76,6 @@ describe("<ComputerVsComputer />", () => {
     const gameResult = screen.getByTestId("game-result");
     expect(gameResult.textContent).toEqual("Computer 2 win");
     jest.useRealTimers();
+    getRandomOptionMock.mockRestore();
   });
 });

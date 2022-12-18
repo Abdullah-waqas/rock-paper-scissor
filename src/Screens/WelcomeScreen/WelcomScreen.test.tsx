@@ -3,7 +3,7 @@ import userEvent from "@testing-library/user-event";
 import { COMPUTER_VS_COMPUTER, PLAYER_VS_COMPUTER } from "../../constants";
 import WelcomScreen from "./WelcomScreen";
 
-describe("<ComputerVsComputer />", () => {
+describe("<WelcomeScreen />", () => {
   afterEach(cleanup);
 
   it("should call playerVsComp func", async () => {

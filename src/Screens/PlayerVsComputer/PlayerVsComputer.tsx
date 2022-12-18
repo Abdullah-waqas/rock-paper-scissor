@@ -22,10 +22,10 @@ const PlayerVsComputer: FC<PlayerVsComputerType> = ({ setMode }) => {
 
   return (
     <>
-      <h2>Choose Option from here</h2>
       <div className="button-box">
         {!result && (
           <>
+            <h2>Choose Option from here</h2>
             <button data-testid="test-paper_btn" onClick={() => play(PAPER)}>
               Paper
             </button>
@@ -43,7 +43,7 @@ const PlayerVsComputer: FC<PlayerVsComputerType> = ({ setMode }) => {
         {result && (
           <>
             <h2>Human chooses {result.playerASelection}</h2>
-            <h2>Computer 2 chooses {result.playerBSelection}</h2>
+            <h2>Computer chooses {result.playerBSelection}</h2>
             <h2 data-testid="game-result">Result: {result.status}</h2>
           </>
         )}
