@@ -1,4 +1,4 @@
-import React, { FC } from 'react';
+import React, { FC } from "react";
 import { COMPUTER_VS_COMPUTER, PLAYER_VS_COMPUTER } from '../../constants';
 import { GAME_STATE } from '../../types';
 
